@@ -70,7 +70,7 @@ border: none;
 .movie{
     border-radius: 10px;
     background: #3A3939;
-    margin-bottom: 3px;
+    margin-bottom: 13px;
     padding: 30px;
     display: flex;
     justify-content: space-between;
@@ -86,8 +86,10 @@ letter-spacing: -0.4px;
 word-break: break-all;
 }
 .movie__delete-btn {
-    
-    
+    background-image: url(close.png);
+    display: block;
+    width: 23px;
+    height: 23px;
     cursor: pointer;
 }
 .movie__delete-btn:hover {
