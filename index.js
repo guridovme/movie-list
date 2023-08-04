@@ -16,25 +16,17 @@ const addMovie = () => {
 
 const getMovies = () => {
     return movies;
-  };
+};
 
 const renderMovie = (movie) => {
 
-
-return (`
-        <li class="movie">
-        
-        <div class="movie__title">${movie}</div>
-        
-        <div class="movie__delete-btn">
-        
-
-
-        </div>
-        
-        </li>
-        `);
-  
+    return (`
+            <li class="movie">          
+            <input class="movie__checkbox" type="checkbox">
+            <div class="movie__title">${movie}</div>
+            <div class="movie__delete-btn"></div>
+            </li>
+            `);
 };
 
 const createMovie = (newMovie) => {
@@ -46,16 +38,22 @@ const clearInput  = () => {
     movieInputNode.value='';    
 };
 
-
-
 const addMovieBtnHandler = () => {
-    
     addMovie();
     createMovie(getMovieFromUser());
     clearInput();
 };
 
-const deleteMoviesHandler = (event) => {
+const checkMovieHandler = (event) => {
+    const movieBox = event.target.closest(".movie");
+    const movieTitleLineThrough = event.target.closest(".movie__title");
+    if (event.target.classList.contains("movie__checkbox")) {
+        movieBox.classList.toggle("movie__opacity");
+        movieTitleLineThrough.classList.toggle("movie__title-checked");
+    }
+  };
+
+const deleteMovieHandler = (event) => {
     const deleteMovieItem = event.target.closest(".movie");
     const deleteMovieIndex = getMovies(deleteMovieItem);
     if (event.target.classList.contains("movie__delete-btn")) {
@@ -64,8 +62,9 @@ const deleteMoviesHandler = (event) => {
     }
   };
 
-
 addMovieBtnNode.addEventListener('click', addMovieBtnHandler);
-moviesNode.addEventListener("click", deleteMoviesHandler);
+moviesNode.addEventListener("click", deleteMovieHandler);
+moviesNode.addEventListener("click", checkMovieHandler);
+
 
 
